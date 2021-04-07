@@ -1,16 +1,15 @@
 const inquirer = require('inquirer');
 
-
 const questions = [
     {
         type: 'input',
         name: 'nameInput',
-        message: "Enter your teammate's name."
+        message: "Enter the team manager's name."
     },
     {
         type: 'input',
         name: 'emailInput',
-        message: "Enter your teammate's email."
+        message: "Enter the manager's email address."
     },
     {
         type: 'input',
@@ -21,7 +20,21 @@ const questions = [
         type: 'input',
         name: 'idInput',
         message: 'Enter employee id.'
-    }
+    },
+    {
+        type: 'list',
+        name: 'confirmAddEmployee',
+        message: 'Do you want to add an engineer or intern, or finish building your team?',
+        choices: ['add engineer', 'add intern', 'finish building team']
+    },
+    {
+        type: 'input',
+        name: 'idInput',
+        message: 'Enter employee id.',
+        when: ({confirmAddEmployee})
+    },
+    
+    
 ];
 
 
