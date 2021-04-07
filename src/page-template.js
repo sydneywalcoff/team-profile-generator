@@ -7,14 +7,14 @@ return `
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Profile Generator</title>
-    <link rel="stylesheet" href="./style-template.css">
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body class="container">
+<body>
     <!-- header -->
-    <header class="container bg-primary text-light justify-content-center"><h1>My Team</h1></header>
+    <header class="d-flex bg-primary text-light justify-content-center"><h1>My Team</h1></header>
     <!-- main -->
-    <main>
+    <main class= "mt-1">
         <div>
             <!-- add profiles here -->
         </div>
