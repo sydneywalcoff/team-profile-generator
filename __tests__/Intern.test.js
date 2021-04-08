@@ -18,3 +18,10 @@ test("get's intern's role", () => {
 
     expect(intern.getRole()).toBe('Intern');
 });
+
+test("get's intern's school", () => {
+    const intern = new Intern('Sydney', 2607127, 'sydney.walcoff@gmail.com', 'UC Davis');
+
+    expect(intern.getSchool()).toBe('UC Davis');
+    expect(intern.getSchool()).toEqual(expect.any(String));
+});
