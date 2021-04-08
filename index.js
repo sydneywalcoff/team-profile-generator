@@ -51,7 +51,7 @@ const questions = [
 fs.writeFile('./dist/index.html', generatePage(), err => {
     if (err) throw err;
 
-    console.log('Portfolio complete!');
+    console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
 });
 
 // init();
