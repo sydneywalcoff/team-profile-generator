@@ -118,6 +118,10 @@ const init = () => {
 
             fs.writeFile('./dist/index.html', generatePage(team), err => {
                 if (err) throw err;
+
+                fs.copyFile('./src/style.css', './dist/style.css', err => {
+                    if(err) throw err;
+                });
             
                 console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
             });
