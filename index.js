@@ -11,7 +11,8 @@ const managerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Enter their name."
+        message: "Enter their name.",
+        // validate: 
     },
     {
         type: 'input',
@@ -64,7 +65,34 @@ const engineerQuestions = [
     }
 ];
 
-// const 
+const internQuestions = [
+    {
+        type: 'input',
+        name: 'name',
+        message: "Enter their name."
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: "Enter their email address."
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter their school.'
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'Enter their employee id.'
+    },
+    {
+        type: 'list',
+        name: 'confirmAddEmployee',
+        message: 'Do you want to add another team member, or finish building your team?',
+        choices: ['add engineer', 'add intern', 'finish building team']
+    }
+];
 
 
 const init = () => {
@@ -78,16 +106,24 @@ const init = () => {
             //     console.log("you're adding an engineer");
             //     inquirer.prompt(engineerQuestions)
             //         .then(answers => {
-            //             const engineer
+            //             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            //             team.push(engineer);
+            //             console.log(team)
             //         });
             // }
-        //     else if (answers.confirmAddEmployee === 'add intern') {
-        //         console.log("you've added an intern")
-        //     }
+            // else if (answers.confirmAddEmployee === 'add intern') {
+            //     console.log("you've added an intern")
+            // }
+
+            fs.writeFile('./dist/index.html', generatePage(team[0]), err => {
+                if (err) throw err;
+            
+                console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
+            });
         });
 };
 
-// fs.writeFile('./dist/index.html', generatePage(), err => {
+// fs.writeFile('./dist/index.html', generatePage(team), err => {
 //     if (err) throw err;
 
 //     console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
