@@ -141,7 +141,7 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'github',
+        name: 'school',
         message: 'Enter their school.'
     },
     {
@@ -159,23 +159,23 @@ const internQuestions = [
 
 const promptManager = (managerQuestions) => {
     inquirer.prompt(managerQuestions)
-        .then(answers => {
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            if(!manager.subordinates) {
-                manager.subordinates = [];
-            }
-            if(answers.confirmAddEmployee === 'add engineer') {
-                promptEngineer(engineerQuestions, manager);
-                console.log('You are adding an engineer');
-            }
-            if(answers.confirmAddEmployee === 'add intern') {
-                promptIntern(internQuestions);
-                console.log('You are adding an intern');
-            }
-            else {
-                return;
-            }
-        });
+    .then(answers => {
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        if(!manager.subordinates) {
+            manager.subordinates = [];
+        }
+        if(answers.confirmAddEmployee === 'add engineer') {
+            console.log('You are adding an engineer');
+            promptEngineer(engineerQuestions, manager);
+        }
+        if(answers.confirmAddEmployee === 'add intern') {
+            console.log('You are adding an intern');
+            promptIntern(internQuestions, manager);
+        }
+        else {
+            return;
+        }
+    });
 };
 
 const promptEngineer = (engineerQuestions, manager) => {
@@ -186,12 +186,12 @@ const promptEngineer = (engineerQuestions, manager) => {
         console.log(manager.subordinates);
 
         if(answers.confirmAddEmployee === 'add engineer') {
-            promptEngineer(engineerQuestions);
             console.log('You are adding an engineer');
+            promptEngineer(engineerQuestions, manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
-            promptIntern(internQuestions);
             console.log('You are adding an intern');
+            promptIntern(internQuestions, manager);
         }
         else {
             return 
@@ -201,20 +201,20 @@ const promptEngineer = (engineerQuestions, manager) => {
 
 const promptIntern = (internQuestions, manager) => {
     inquirer.prompt(internQuestions)
-        .then(answers => {
-            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-            manager.subordinates.push(intern);
-            console.log(manager.subordinates);
+    .then(answers => {
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        manager.subordinates.push(intern);
+        console.log(manager.subordinates);
 
-            if(answers.confirmAddEmployee === 'add engineer') {
-                promptEngineer(engineerQuestions);
-                console.log('You are adding an engineer');
-            }
-            if(answers.confirmAddEmployee === 'add intern') {
-                promptIntern(internQuestions);
-                console.log('You are adding an intern');
-            }
-        });
+        if(answers.confirmAddEmployee === 'add engineer') {
+            console.log('You are adding an engineer');
+            promptEngineer(engineerQuestions, manager);
+        }
+        if(answers.confirmAddEmployee === 'add intern') {
+            console.log('You are adding an intern');
+            promptIntern(internQuestions, manager);
+        }
+    });
 };
 
 
