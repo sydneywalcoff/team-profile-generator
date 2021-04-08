@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generatePage = require('./src/page-template');
-const generateAllCards = require('./src/profile-cards');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
@@ -102,34 +101,29 @@ const init = () => {
         .then(answers => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             team.push(manager);
+ 
 
-            if(answers.confirmAddEmployee === 'add engineer') {
-                console.log("you're adding an engineer");
-                inquirer.prompt(engineerQuestions)
-                    .then(answers => {
-                        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-                        team.push(engineer);
-                        generateAllCards(team);
-                    });
-            }
+
+            // if(answers.confirmAddEmployee === 'add engineer') {
+            //     console.log("you're adding an engineer");
+            //     inquirer.prompt(engineerQuestions)
+            //         .then(answers => {
+            //             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+            //             team.push(engineer);
+            //         });
+            // }
             // else if (answers.confirmAddEmployee === 'add intern') {
             //     console.log("you've added an intern")
             // }
 
+            fs.writeFile('./dist/index.html', generatePage(team), err => {
+                if (err) throw err;
             
-
-            // fs.writeFile('./dist/index.html', generatePage(), err => {
-            //     if (err) throw err;
+                console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
+            });
             
-            //     console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
-            // });
         });
 };
 
-// fs.writeFile('./dist/index.html', generatePage(team), err => {
-//     if (err) throw err;
-
-//     console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
-// });
 
 init();
