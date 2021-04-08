@@ -33,7 +33,7 @@ const questions = [
         type: 'input',
         name: 'idInput',
         message: 'Enter employee id.',
-        when: ({confirmAddEmployee})
+        // when: ({confirmAddEmployee})
     },
     
     
