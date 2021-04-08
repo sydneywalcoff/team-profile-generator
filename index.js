@@ -2,42 +2,42 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generatePage = require('./src/page-template');
 
-// const questions = [
-//     {
-//         type: 'input',
-//         name: 'nameInput',
-//         message: "Enter the team manager's name."
-//     },
-//     {
-//         type: 'input',
-//         name: 'emailInput',
-//         message: "Enter the manager's email address."
-//     },
-//     {
-//         type: 'input',
-//         name: 'officeInput',
-//         message: 'Enter office number.'
-//     },
-//     {
-//         type: 'input',
-//         name: 'idInput',
-//         message: 'Enter employee id.'
-//     },
-//     {
-//         type: 'list',
-//         name: 'confirmAddEmployee',
-//         message: 'Do you want to add an engineer or intern, or finish building your team?',
-//         choices: ['add engineer', 'add intern', 'finish building team']
-//     },
-//     {
-//         type: 'input',
-//         name: 'idInput',
-//         message: 'Enter employee id.',
-//         when: ({confirmAddEmployee})
-//     },
+const questions = [
+    {
+        type: 'input',
+        name: 'nameInput',
+        message: "Enter the team manager's name."
+    },
+    {
+        type: 'input',
+        name: 'emailInput',
+        message: "Enter the manager's email address."
+    },
+    {
+        type: 'input',
+        name: 'officeInput',
+        message: 'Enter office number.'
+    },
+    {
+        type: 'input',
+        name: 'idInput',
+        message: 'Enter employee id.'
+    },
+    {
+        type: 'list',
+        name: 'confirmAddEmployee',
+        message: 'Do you want to add an engineer or intern, or finish building your team?',
+        choices: ['add engineer', 'add intern', 'finish building team']
+    },
+    {
+        type: 'input',
+        name: 'idInput',
+        message: 'Enter employee id.',
+        when: ({confirmAddEmployee})
+    },
     
     
-// ];
+];
 
 
 // const init = () => {
