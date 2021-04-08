@@ -5,7 +5,6 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const team = [];
 
 const managerQuestions = [
     {
@@ -67,26 +66,59 @@ const managerQuestions = [
         choices: ['add engineer', 'add intern', 'finish building team']
     }
 ];
+
 const engineerQuestions = [
     {
         type: 'input',
         name: 'name',
-        message: "Enter their name."
+        message: "Enter their name.",
+        validate: name => {
+            if(name) {
+                return true;
+            } else {
+                console.log("Please enter their name.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'email',
-        message: "Enter their email address."
+        message: "Enter their email address.",
+        validate: email => {
+            if(email) {
+                return true;
+            } else {
+                console.log("Please enter their email.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'github',
-        message: 'Enter their github username.'
+        message: 'Enter their github username.',
+        validate: github => {
+            if(github) {
+                return true;
+            } else {
+                console.log("Please enter their github username.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'id',
-        message: 'Enter their employee id.'
+        message: 'Enter their employee id.',
+        validate: id => {
+            if(id) {
+                return true;
+            } else {
+                console.log("Please enter their employee id.");
+                return false;
+            }
+        }
     },
     {
         type: 'list',
@@ -122,11 +154,6 @@ const internQuestions = [
         name: 'confirmAddEmployee',
         message: 'Do you want to add another team member, or finish building your team?',
         choices: ['add engineer', 'add intern', 'finish building team']
-    },
-    {
-        type: 'input',
-        name: 'engineerName',
-        message: 'What is'
     }
 ];
 
@@ -134,25 +161,60 @@ const promptManager = (managerQuestions) => {
     inquirer.prompt(managerQuestions)
         .then(answers => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            team.push(manager);
-
+            if(!manager.subordinates) {
+                manager.subordinates = [];
+            }
             if(answers.confirmAddEmployee === 'add engineer') {
-                // promptEngineer(engineerQuestions);
+                promptEngineer(engineerQuestions, manager);
                 console.log('You are adding an engineer');
             }
             if(answers.confirmAddEmployee === 'add intern') {
-                // promptIntern(internQuestions);
+                promptIntern(internQuestions);
                 console.log('You are adding an intern');
+            }
+            else {
+                return;
             }
         });
 };
 
-const promptEngineer = () => {
+const promptEngineer = (engineerQuestions, manager) => {
+    inquirer.prompt(engineerQuestions)
+    .then(answers => {
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+        manager.subordinates.push(engineer);
+        console.log(manager.subordinates);
 
+        if(answers.confirmAddEmployee === 'add engineer') {
+            promptEngineer(engineerQuestions);
+            console.log('You are adding an engineer');
+        }
+        if(answers.confirmAddEmployee === 'add intern') {
+            promptIntern(internQuestions);
+            console.log('You are adding an intern');
+        }
+        else {
+            return 
+        }
+    });
 };
 
-const promptIntern = () => {
+const promptIntern = (internQuestions, manager) => {
+    inquirer.prompt(internQuestions)
+        .then(answers => {
+            const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+            manager.subordinates.push(intern);
+            console.log(manager.subordinates);
 
+            if(answers.confirmAddEmployee === 'add engineer') {
+                promptEngineer(engineerQuestions);
+                console.log('You are adding an engineer');
+            }
+            if(answers.confirmAddEmployee === 'add intern') {
+                promptIntern(internQuestions);
+                console.log('You are adding an intern');
+            }
+        });
 };
 
 
