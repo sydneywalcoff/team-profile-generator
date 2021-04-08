@@ -12,22 +12,53 @@ const managerQuestions = [
         type: 'input',
         name: 'name',
         message: "Enter their name.",
-        // validate: 
+        validate: name => {
+            if(name) {
+                return true;
+            } else {
+                console.log("Please enter your team manager's name.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'email',
-        message: "Enter their email address."
+        message: "Enter their email address.",
+        validate: email => {
+            if(email) {
+                return true;
+            } else {
+                console.log("Please enter your team manager's email.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'officeNumber',
-        message: 'Enter their office number.'
+        message: 'Enter their office number.',
+        validate: officeNumber => {
+            if(officeNumber) {
+                return true;
+            } else {
+                console.log("Please enter your team manager's office number.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
         name: 'id',
-        message: 'Enter their employee id.'
+        message: 'Enter their employee id.',
+        validate: id => {
+            if(id) {
+                return true;
+            } else {
+                console.log("Please enter your team manager's id.");
+                return false;
+            }
+        }
     },
     {
         type: 'list',
@@ -91,42 +122,43 @@ const internQuestions = [
         name: 'confirmAddEmployee',
         message: 'Do you want to add another team member, or finish building your team?',
         choices: ['add engineer', 'add intern', 'finish building team']
+    },
+    {
+        type: 'input',
+        name: 'engineerName',
+        message: 'What is'
     }
 ];
 
-
-const init = () => {
-    console.log("Welcome to Team Profile Generator. Let's start with the team manager.")
+const promptManager = (managerQuestions) => {
     inquirer.prompt(managerQuestions)
         .then(answers => {
             const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
             team.push(manager);
- 
 
-
-            // if(answers.confirmAddEmployee === 'add engineer') {
-            //     console.log("you're adding an engineer");
-            //     inquirer.prompt(engineerQuestions)
-            //         .then(answers => {
-            //             const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-            //             team.push(engineer);
-            //         });
-            // }
-            // else if (answers.confirmAddEmployee === 'add intern') {
-            //     console.log("you've added an intern")
-            // }
-
-            fs.writeFile('./dist/index.html', generatePage(team), err => {
-                if (err) throw err;
-
-                fs.copyFile('./src/style.css', './dist/style.css', err => {
-                    if(err) throw err;
-                });
-            
-                console.log('Portfolio complete! Check dist folder to launch completed Team Profile!');
-            });
-            
+            if(answers.confirmAddEmployee === 'add engineer') {
+                // promptEngineer(engineerQuestions);
+                console.log('You are adding an engineer');
+            }
+            if(answers.confirmAddEmployee === 'add intern') {
+                // promptIntern(internQuestions);
+                console.log('You are adding an intern');
+            }
         });
+};
+
+const promptEngineer = () => {
+
+};
+
+const promptIntern = () => {
+
+};
+
+
+const init = () => {
+    console.log("Welcome to Team Profile Generator. Let's start with the team manager.")
+    promptManager(managerQuestions);
 };
 
 
