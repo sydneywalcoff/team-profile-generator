@@ -17,4 +17,13 @@ test("get's engineer's role", () => {
     const engineer = new Engineer('Sydney', 2607127, 'sydney.walcoff@gmail.com', 'sydneywalcoff');
 
     expect(engineer.getRole()).toBe('Engineer');
+    expect(engineer.getRole()).toEqual(expect.any(String));
+
+});
+
+test("get's engineer's github username", () => {
+    const engineer = new Engineer('Sydney', 2607127, 'sydney.walcoff@gmail.com', 'sydneywalcoff');
+
+    expect(engineer.getGithub()).toBe('sydneywalcoff');
+    expect(engineer.getGithub()).toEqual(expect.any(String));
 });
