@@ -156,7 +156,7 @@ const internQuestions = [
     }
 ];
 
-const promptManager = (managerQuestions) => {
+const promptManager = () => {
     inquirer.prompt(managerQuestions)
     .then(answers => {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
@@ -165,36 +165,34 @@ const promptManager = (managerQuestions) => {
         }
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
         }
         else {
-            createDistFiles();
+            createDistFiles(manager);
         }
     });
 };
 
 const promptEngineer = manager => {
-
     inquirer.prompt(engineerQuestions)
     .then(answers => {
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         manager.subordinates.push(engineer);
-        console.log(manager.subordinates);
 
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
         }
         else {
-            return 
+            createDistFiles(manager);
         }
     });
 };
@@ -204,15 +202,17 @@ const promptIntern = manager => {
     .then(answers => {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         manager.subordinates.push(intern);
-        console.log(manager.subordinates);
 
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
+        }
+        else {
+            createDistFiles(manager);
         }
     });
 };
@@ -229,7 +229,7 @@ const createDistFiles = manager => {
 
 const init = () => {
     console.log("Welcome to Team Profile Generator. Let's start with the team manager.")
-    promptManager(managerQuestions);
+    promptManager();
 };
 
 init();
