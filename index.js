@@ -5,7 +5,6 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-
 const managerQuestions = [
     {
         type: 'input',
@@ -180,8 +179,13 @@ const promptManager = () => {
             console.log('You are adding an intern');
             promptIntern(manager);
         }
+<<<<<<< HEAD
         else if(answers.confirmAddEmployee === 'finish building team') {
             writeFile(manager);
+=======
+        else {
+            createDistFiles(manager);
+>>>>>>> a6e698daa69e60c6faf93f6fda0ffeeccb320340
         }
     });
 };
@@ -200,8 +204,13 @@ const promptEngineer = manager => {
             console.log('You are adding an intern');
             promptIntern(manager);
         }
+<<<<<<< HEAD
         else if(answers.confirmAddEmployee === 'finish building team') {
             writeFile(manager);
+=======
+        else {
+            createDistFiles(manager);
+>>>>>>> a6e698daa69e60c6faf93f6fda0ffeeccb320340
         }
     });
 };
@@ -241,8 +250,7 @@ const writeFile = manager => {
 
 const init = () => {
     console.log("Welcome to Team Profile Generator. Let's start with the team manager.")
-    promptManager(managerQuestions);
+    promptManager();
 };
-
 
 init();
