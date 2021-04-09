@@ -35,19 +35,6 @@ const managerQuestions = [
     },
     {
         type: 'input',
-        name: 'officeNumber',
-        message: 'Enter their office number.',
-        validate: officeNumber => {
-            if(officeNumber) {
-                return true;
-            } else {
-                console.log("Please enter your team manager's office number.");
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
         name: 'id',
         message: 'Enter their employee id.',
         validate: id => {
@@ -55,6 +42,19 @@ const managerQuestions = [
                 return true;
             } else {
                 console.log("Please enter your team manager's id.");
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'Enter their office number.',
+        validate: officeNumber => {
+            if(officeNumber) {
+                return true;
+            } else {
+                console.log("Please enter your team manager's office number.");
                 return false;
             }
         }
@@ -96,19 +96,6 @@ const engineerQuestions = [
     },
     {
         type: 'input',
-        name: 'github',
-        message: 'Enter their github username.',
-        validate: github => {
-            if(github) {
-                return true;
-            } else {
-                console.log("Please enter their github username.");
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
         name: 'id',
         message: 'Enter their employee id.',
         validate: id => {
@@ -116,6 +103,19 @@ const engineerQuestions = [
                 return true;
             } else {
                 console.log("Please enter their employee id.");
+                return false;
+            }
+        }
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Enter their github username.',
+        validate: github => {
+            if(github) {
+                return true;
+            } else {
+                console.log("Please enter their github username.");
                 return false;
             }
         }
@@ -141,13 +141,21 @@ const internQuestions = [
     },
     {
         type: 'input',
-        name: 'school',
-        message: 'Enter their school.'
+        name: 'id',
+        message: 'Enter their employee id.',
+        validate: id => {
+            if(id) {
+                return true;
+            } else {
+                console.log("Please enter their employee id.");
+                return false;
+            }
+        }
     },
     {
         type: 'input',
-        name: 'id',
-        message: 'Enter their employee id.'
+        name: 'school',
+        message: 'Enter their school.'
     },
     {
         type: 'list',
