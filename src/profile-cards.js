@@ -10,7 +10,7 @@ const generateAllCards = teamArr => {
         cardArr.push(cardHTML)
     }
     return `
-    ${cardArr.join('')}
+        ${cardArr.join('')}
     `
 }
 

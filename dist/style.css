@@ -4,6 +4,6 @@ header {
     height: 80px;
 }
 
-div.card {
-    width: 30%;
+.card {
+    padding: 0 !important;
 }

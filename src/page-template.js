@@ -16,8 +16,8 @@ return `
     <!-- header -->
     <header class="d-flex bg-primary text-light justify-content-center"><h1>My Team</h1></header>
     <!-- main -->
-    <main class= "mt-5 container">
-        <div class = "card">
+    <main class= "mt-5 row justify-content-center">
+        <div class = "card col-3 w-75">
             <div class="bg-primary text-light card-header">
                 <h2 class= "text-light">${manager.name}</h2>
                 <h2 class= "text-light">${manager.getRole()}</h2>
