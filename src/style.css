@@ -3,3 +3,7 @@ cards should wrap if more than 3? */
 header {
     height: 80px;
 }
+
+.card {
+    padding: 0 !important;
+}
