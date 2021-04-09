@@ -179,13 +179,8 @@ const promptManager = () => {
             console.log('You are adding an intern');
             promptIntern(manager);
         }
-<<<<<<< HEAD
         else if(answers.confirmAddEmployee === 'finish building team') {
             writeFile(manager);
-=======
-        else {
-            createDistFiles(manager);
->>>>>>> a6e698daa69e60c6faf93f6fda0ffeeccb320340
         }
     });
 };
@@ -204,13 +199,8 @@ const promptEngineer = manager => {
             console.log('You are adding an intern');
             promptIntern(manager);
         }
-<<<<<<< HEAD
         else if(answers.confirmAddEmployee === 'finish building team') {
             writeFile(manager);
-=======
-        else {
-            createDistFiles(manager);
->>>>>>> a6e698daa69e60c6faf93f6fda0ffeeccb320340
         }
     });
 };
