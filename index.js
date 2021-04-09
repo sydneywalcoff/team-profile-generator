@@ -232,7 +232,7 @@ const writeFile = manager => {
         fs.copyFile('./src/style.css','./dist/style.css', err => {
             if(err) throw err;
 
-            console.log('Style files copied.')
+            console.log('Files complete! Check the /dist folder to find your completed Team Profile.')
         })
     })
 };
