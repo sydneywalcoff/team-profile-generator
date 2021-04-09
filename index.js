@@ -165,7 +165,7 @@ const internQuestions = [
     }
 ];
 
-const promptManager = (managerQuestions) => {
+const promptManager = () => {
     inquirer.prompt(managerQuestions)
     .then(answers => {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
@@ -174,55 +174,68 @@ const promptManager = (managerQuestions) => {
         }
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
         }
-        else {
-            return;
+        else if(answers.confirmAddEmployee === 'finish building team') {
+            writeFile(manager);
         }
     });
 };
 
-const promptEngineer = (engineerQuestions, manager) => {
+const promptEngineer = manager => {
     inquirer.prompt(engineerQuestions)
     .then(answers => {
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         manager.subordinates.push(engineer);
-        console.log(manager.subordinates);
 
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
         }
-        else {
-            return 
+        else if(answers.confirmAddEmployee === 'finish building team') {
+            writeFile(manager);
         }
     });
 };
 
-const promptIntern = (internQuestions, manager) => {
+const promptIntern = manager => {
     inquirer.prompt(internQuestions)
     .then(answers => {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         manager.subordinates.push(intern);
-        console.log(manager.subordinates);
 
         if(answers.confirmAddEmployee === 'add engineer') {
             console.log('You are adding an engineer');
-            promptEngineer(engineerQuestions, manager);
+            promptEngineer(manager);
         }
         if(answers.confirmAddEmployee === 'add intern') {
             console.log('You are adding an intern');
-            promptIntern(internQuestions, manager);
+            promptIntern(manager);
+        }
+        else if(answers.confirmAddEmployee === 'finish building team') {
+            writeFile(manager);
         }
     });
+};
+
+const writeFile = manager => {
+    fs.writeFile('./dist/index.html', generatePage(manager), err => {
+        if(err) throw err;
+
+        fs.copyFile('./src/style.css','./dist/style.css', err => {
+            if(err) throw err;
+
+            console.log('Style files copied.')
+        })
+    })
 };
 
 
