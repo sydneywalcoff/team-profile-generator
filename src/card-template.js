@@ -1,7 +1,7 @@
 const generateCard = employee => {
     if(employee.getRole() ==='Engineer') {
         return `
-        <div class = "card col-3 m-1">
+        <div class = "card col-3 m-2">
             <div class="bg-primary text-light card-header">
                 <h2 class= "text-light">${employee.name}</h2>
                 <h2 class= "text-light">${employee.getRole()}</h2>
@@ -18,7 +18,7 @@ const generateCard = employee => {
     }
     if(employee.getRole() ==='Intern') {
         return `
-        <div class = "card col-3 m-1">
+        <div class = "card col-3 m-2">
             <div class="bg-primary text-light card-header">
                 <h2 class= "text-light">${employee.name}</h2>
                 <h2 class= "text-light">${employee.getRole()}</h2>
